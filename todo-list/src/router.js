@@ -25,6 +25,11 @@ export default new Router({
       path: '/todoList',
       name: 'todoList',
       component: () => import('./views/TodoList.vue')
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: () => import('./views/Game.vue')
     }
   ]
 })
