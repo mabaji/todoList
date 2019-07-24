@@ -4,7 +4,7 @@
         <v-flex xs3 offset-xs1>
                 <div class="small-5 columns text-center">
                     <img 
-                        :src="myChoiceImg" 
+                        :src="myChoiceImg"
                         alt="" 
                         class="text-center"
                     >
@@ -12,14 +12,14 @@
                     <div class="battle-wrap">
                         <img
                             v-for="(life, index) in lifeOfMe"
-                            :key="index"
+                            :key="`lifeOfMe-${index}`"
                             src="../assets/images/heart.jpg"
                             class="heart"
                             alt=""
                         >
                         <img
                             v-for="(life, index) in leftLifeOfMe"
-                            :key="index"
+                            :key="`leftLifeOfMe-${index}`"
                             src="../assets/images/broken-heart.jpg"
                             class="heart"
                             alt=""
@@ -27,7 +27,7 @@
                         <div class="small-8 small-offset-2 columns text-center">
                             <label 
                                 v-for="(select, index) in selects"
-                                :key="index"
+                                :key="`selects-${index}`"
                                 class="radio-label"
                             >
                                 <input type="radio" v-model="myChoice" :value="select.value"> {{ select.name }}
@@ -61,14 +61,14 @@
                     <h1 class="text-center"><strong>Computer</strong></h1><div class="battle-wrap">
                         <img
                             v-for="(life, index) in lifeOfCom" 
-                            :key="index"
+                            :key="`lifeOfCom-${index}`"
                             src="../assets/images/heart.jpg"
                             class="heart"
                             alt=""
                         >
                         <img
                             v-for="(life, index) in leftLifeOfCom"
-                            :key="index"
+                            :key="`leftLifeOfCom-${index}`"
                             src="../assets/images/broken-heart.jpg"
                             class="heart"
                             alt=""
@@ -194,12 +194,12 @@ export default {
                 { name: '가위', value: 'scissor'},
                 { name: '바위', value: 'rock'},
                 { name: '보', value: 'paper'},
-            ]            
+            ]
         }
     },
     computed: {
         myChoiceImg: function () {
-            return this.myChoice !== null ? `../assets/images/${this.myChoice}.jpg` : '../assets/images/question.jpg'
+            return this.myChoice !== null ? `../images/${this.myChoice}.jpg` : '../assets/images/question.jpg'
         },
         comChoiceImg: function () {
             return this.comChoice !== null ? `../assets/images/${this.comChoice}.jpg` : '../assets/images/question.jpg'
@@ -214,9 +214,9 @@ export default {
     watch: {
         count: function (newVal) {
             if(newVal === 0){
-                // 컴퓨터가 가위바위보를 선택하는 
+                // 컴퓨터가 가위바위보를 선택하는
                 this.selectCom()
-                
+
                 // 가위바위보 승패 결정 & 몫을 차감
                 this.whoIsWin()
 
